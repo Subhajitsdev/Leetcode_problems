@@ -1,102 +1,51 @@
-Valid Path in an Undirected Graph
+# Valid Path in an Undirected Graph
 
-Problem Statement
+## Problem Statement
 
-You are given a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 (inclusive). The edges in the graph are represented as a 2D integer array edges, where each edges[i] = [u_i, v_i] denotes a bi-directional edge between vertex u_i and vertex v_i. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself.
+You are given an **undirected graph** with `n` vertices, labeled from `0` to `n - 1`. The edges in the graph are represented as a **2D integer array** `edges`, where:
 
-You need to determine if there exists a valid path from the given source vertex to the destination vertex.
+- Each `edges[i] = [ui, vi]` represents a **bi-directional** edge between vertex `ui` and vertex `vi`.
+- Each vertex pair has **at most one edge**.
+- No vertex has an edge to itself.
 
-Input Format
+Your task is to determine whether there is a **valid path** that exists from a given `source` vertex to a `destination` vertex.
 
-n (integer): Number of vertices in the graph.
+## Input Format
 
-edges (2D integer array): A list of edges where each edge connects two vertices.
+- An integer `n` representing the number of vertices.
+- A list of edges `edges`, where `edges[i] = [ui, vi]` represents an undirected edge.
+- An integer `source` representing the starting vertex.
+- An integer `destination` representing the target vertex.
 
-source (integer): The starting vertex.
+## Output Format
 
-destination (integer): The target vertex.
+- Return `true` if there is a valid path from `source` to `destination`, otherwise return `false`.
 
-Output Format
+## Example
 
-Return true if there exists a path from source to destination, otherwise return false.
-
-Example
-
-Input
-
+### 📝 **Input**
+```
 n = 3
-edges = [[0,1],[1,2],[2,0]]
+edges = [[0,1], [1,2], [2,0]]
 source = 0
 destination = 2
-
-Output
-
+```
+### ✅ **Output**
+```
 true
+```
+### 🔍 **Explanation**
+```
+There are two paths from vertex 0 to vertex 2:
+- 0 → 1 → 2
+- 0 → 2
+```
+### 💡 **Approach**
+To determine if a valid path exists, we can use graph traversal techniques like:
 
-Explanation
+🔹 #Breadth-First Search (BFS)
+Uses a queue for level-wise traversal.
 
-There are two possible paths from vertex 0 to vertex 2:
+Ensures the shortest path is found first.
 
-0 → 1 → 2
-
-0 → 2
-Since a valid path exists, the function returns true.
-
-Constraints
-
-1 <= n <= 10^5
-
-0 <= edges.length <= 10^5
-
-edges[i].length == 2
-
-0 <= u_i, v_i < n
-
-0 <= source, destination < n
-
-No duplicate edges and no self-loops.
-
-Approach
-
-1. Graph Representation
-
-Use an adjacency list (vector<vector<int>>) to store the graph.
-
-Traverse the graph using Breadth-First Search (BFS) or Depth-First Search (DFS) to check for a path.
-
-2. BFS Approach (Iterative)
-
-Use a queue to explore nodes level by level.
-
-Maintain a visited array to avoid revisiting nodes.
-
-If we reach destination, return true.
-
-If the queue is exhausted without finding destination, return false.
-
-Implementation (BFS in C++)
-
-Complexity Analysis
-
-Graph Construction: O(n + m) (where m is the number of edges)
-
-BFS Traversal: O(n + m)
-
-Overall Complexity: O(n + m), which is efficient for large inputs.
-
-Alternative Approach (DFS)
-
-Instead of BFS, we can also use DFS (Depth-First Search) to explore paths recursively.
-
-Summary
-
-Graph Representation: Adjacency List
-
-Traversal: BFS (or DFS alternative)
-
-Time Complexity: O(n + m)
-
-Space Complexity: O(n + m) (for adjacency list and visited array)
-
-This solution efficiently determines whether a valid path exists between the given source and destination. 🚀
-
+Suitable for unweighted graphs like this one.
